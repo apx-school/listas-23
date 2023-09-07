@@ -12,6 +12,7 @@
     "@types/node": "20.5.9",
     "@types/react": "18.2.21",
     "@types/react-dom": "18.2.7",
+    "firebase-admin": "^11.10.1",
     "next": "13.4.19",
     "react": "18.2.0",
     "react-dom": "18.2.0",
