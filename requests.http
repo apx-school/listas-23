@@ -1,0 +1,15 @@
+### Ejemplo:
+GET http://localhost:4023/api/test/auth
+
+### Auth route:
+GET http://localhost:4023/login/test
+
+
+### Ejemplo Post:
+POST https://api.github.com/users/zapaiamarce HTTP/1.1
+content-type: application/json
+
+{
+    "name": "sample",
+    "time": "Wed, 21 Oct 2015 18:27:50 GMT"
+}

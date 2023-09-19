@@ -36,6 +36,20 @@ export function normalizeEmail(email: string) {
   return email.toLowerCase().trim();
 }
 
+export async function getUserIdByEmail(email: string) {
+  const search = await usersCollection
+    .where("email", "==", email)
+    .limit(1)
+    .select()
+    .get();
+
+  if (search.empty) {
+    throw "No existe ese mail";
+  }
+
+  return search.docs[0]?.id;
+}
+
 export function userFromSnap(
   snap:
     | FirebaseFirestore.QueryDocumentSnapshot
