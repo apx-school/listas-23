@@ -1,10 +1,10 @@
 import * as jose from "jose";
 
-export type Token = Partial<{
+export type Token = {
   userId: string;
   email: string;
   createdAt?: Date;
-}>;
+};
 
 const secret = new TextEncoder().encode(process.env.JWT_SECRET);
 const alg = "HS256";

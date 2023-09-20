@@ -1,6 +1,7 @@
 "use server";
 import { sendCode, getToken } from "lib/auth";
 import { cookies } from "next/headers";
+import { redirect } from "next/navigation";
 export async function submitHandler(values) {
   const email = values.get("email");
   const code = values.get("code");
@@ -12,6 +13,6 @@ export async function submitHandler(values) {
       secure: true,
       maxAge: 60 * 60 * 24 * 7,
     });
-    return true;
+    return redirect("/");
   }
 }

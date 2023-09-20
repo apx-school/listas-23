@@ -49,6 +49,10 @@ export async function getUserIdByEmail(email: string) {
 
   return search.docs[0]?.id;
 }
+export async function getUserById(userId: string) {
+  const userSnap = await usersCollection.doc(userId).get();
+  return userFromSnap(userSnap);
+}
 
 export function userFromSnap(
   snap:
