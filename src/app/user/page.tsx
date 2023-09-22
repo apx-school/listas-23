@@ -6,7 +6,7 @@ export default async function UserPage() {
 
   return (
     <div>
-      <h1>{sessionTokenData.email}</h1>
+      <h1>{sessionTokenData?.email}</h1>
     </div>
   );
 }
