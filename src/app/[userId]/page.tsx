@@ -1,5 +1,5 @@
 import { getSessionUser, getSessionUserTokenData } from "lib/app.next";
-import { getListsByUserId } from "models/lists";
+import { getListsCreatedBy } from "models/lists";
 import { getUserById } from "models/users";
 import { notFound } from "next/navigation";
 
@@ -8,13 +8,13 @@ export default async function ProfilePage({ params }) {
   const [user, profileUser, userLists] = await Promise.all([
     getSessionUser(),
     getUserById(profileUserId),
-    getListsByUserId(profileUserId),
+    getListsCreatedBy(profileUserId),
   ]);
   if (!profileUser) {
     notFound();
   }
 
-  const itsMe = user._id === params.userId;
+  const itsMe = user?._id === params.userId;
   console.log(userLists);
 
   return (

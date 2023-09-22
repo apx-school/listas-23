@@ -6,12 +6,8 @@ export default async function handler(
   res: NextApiResponse
 ) {
   try {
-    const newList = await createList({
+    const newList = await createList("nh6ES9IN0H-CUl_9oZvl_", {
       title: "Mi segunda lista",
-      items: {},
-      canRead: ["*"],
-      canWrite: [false],
-      ownerId: "nh6ES9IN0H-CUl_9oZvl_",
     });
     res.status(200).json(newList);
   } catch (error) {

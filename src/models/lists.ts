@@ -13,14 +13,18 @@ type Item = {
 };
 
 export interface ItemsList {
-  _createdAt?: Date;
-  _id?: string;
-  ownerId: string;
+  _createdAt: Date;
+  _id: string;
+  _createdBy: string;
   title: string;
-  canRead: UserOrRole[];
-  canWrite: UserOrRole[];
+  canRead: {
+    [userId: string]: Date;
+  };
+  canWrite: {
+    [userId: string]: Date;
+  };
   items: {
-    [key: string]: Item;
+    [itemId: string]: Item;
   };
 }
 
@@ -37,19 +41,31 @@ const converter = {
 
 const authCollection = firestore.collection("lists").withConverter(converter);
 
-export async function createList(list: ItemsList) {
+export async function createList(userId: string, list: Partial<ItemsList>) {
   const newListId = nanoid();
   const listDoc = authCollection.doc(newListId);
-  list._createdAt = new Date();
-  list._id = newListId;
 
-  await listDoc.set(list);
+  const newList = {
+    // forced
+    _createdAt: new Date(),
+    _id: newListId,
+    _createdBy: userId,
+    // defaults
+    title: list.title || "Sin título",
+    canRead: list.canRead || {},
+    canWrite: list.canWrite || {},
+    items: list.items || {},
+  };
+
+  await listDoc.set(newList);
 
   return list;
 }
 
-export async function getListsByUserId(userId: string) {
-  const listsSearch = await authCollection.where("ownerId", "==", userId).get();
+export async function getListsCreatedBy(userId: string) {
+  const listsSearch = await authCollection
+    .where("_createdAt", "==", userId)
+    .get();
 
   return listsSearch.docs.map((d) => d.data());
 }

@@ -1,13 +1,13 @@
-import { getSessionUser, getSessionUserTokenData } from "lib/app.next";
+import { getSessionUser } from "lib/app.next";
 
-export default async function UserPage() {
+export default async function TimelinePage() {
   const sessionTokenData = await getSessionUser();
   console.log(sessionTokenData);
 
   return (
     <div>
       <h1>Timeline</h1>
-      <div>User:{sessionTokenData._id}</div>
+      <div>User:{sessionTokenData?._id}</div>
     </div>
   );
 }
