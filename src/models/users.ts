@@ -51,7 +51,8 @@ export async function getUserIdByEmail(email: string) {
 }
 export async function getUserById(userId: string) {
   const userSnap = await usersCollection.doc(userId).get();
-  return userFromSnap(userSnap);
+
+  return userSnap.exists ? userFromSnap(userSnap) : null;
 }
 
 export function userFromSnap(

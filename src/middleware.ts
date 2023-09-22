@@ -9,7 +9,7 @@ export async function middleware(request: NextRequest) {
 
   if (request.nextUrl.pathname == "/") {
     if (tokenData) {
-      return NextResponse.rewrite(new URL("/user", request.url));
+      return NextResponse.rewrite(new URL("/timeline", request.url));
     } else {
       return NextResponse.rewrite(new URL("/login", request.url));
     }

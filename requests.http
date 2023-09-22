@@ -4,6 +4,9 @@ GET http://localhost:4023/api/test/auth
 ### Auth route:
 GET http://localhost:4023/login/test
 
+### Create List:
+GET http://localhost:4023/api/test/lists
+
 
 ### Ejemplo Post:
 POST https://api.github.com/users/zapaiamarce HTTP/1.1
