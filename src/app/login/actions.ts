@@ -1,5 +1,6 @@
 "use server";
 import { sendCode, getToken } from "lib/auth";
+import { AUTH_COOKIE_NAME } from "lib/token";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 export async function submitHandler(values) {
@@ -9,7 +10,7 @@ export async function submitHandler(values) {
     await sendCode(email);
   } else if (email && code) {
     const token = await getToken(email, code);
-    cookies().set("auth_token", token, {
+    cookies().set(AUTH_COOKIE_NAME, token, {
       secure: true,
       maxAge: 60 * 60 * 24 * 7,
     });

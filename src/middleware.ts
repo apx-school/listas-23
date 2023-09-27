@@ -1,5 +1,5 @@
 import { getSessionUserTokenData } from "lib/app.next";
-import { decodeToken } from "lib/token";
+import { AUTH_COOKIE_NAME, decodeToken } from "lib/token";
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
@@ -22,10 +22,12 @@ export const config = {
 };
 
 async function getAuthTokenData(request: NextRequest) {
-  const cookie = request.cookies.get("auth_token");
+  const cookie = request.cookies.get(AUTH_COOKIE_NAME);
+
   const value = cookie?.value;
   if (!cookie?.value) {
     return;
   }
+
   return decodeToken(value as string);
 }

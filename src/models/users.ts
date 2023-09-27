@@ -6,6 +6,7 @@ export interface User {
   _id: string;
   _createdAt: Date;
   email: string;
+  rootListId?: string;
 }
 
 export async function getOrCreateUserByEmail(email: string): Promise<User> {
@@ -51,8 +52,13 @@ export async function getUserIdByEmail(email: string) {
 }
 export async function getUserById(userId: string) {
   const userSnap = await usersCollection.doc(userId).get();
-
-  return userSnap.exists ? userFromSnap(userSnap) : null;
+  if (!userSnap.exists) {
+    throw "Usuario inexistente";
+  }
+  return userFromSnap(userSnap);
+}
+export async function updateUser(user: User) {
+  return usersCollection.doc(user._id).update(user as any);
 }
 
 export function userFromSnap(

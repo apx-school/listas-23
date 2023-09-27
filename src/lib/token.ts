@@ -1,5 +1,7 @@
 import * as jose from "jose";
 
+export const AUTH_COOKIE_NAME = "listas_auth_token";
+
 export type Token = {
   userId: string;
   email: string;
