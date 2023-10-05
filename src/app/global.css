@@ -1,0 +1,8 @@
+@import "open-props/style";
+@import "open-props/normalize";
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --surface-1: var(--gray-12);
+  }
+}

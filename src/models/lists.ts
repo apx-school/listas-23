@@ -76,3 +76,26 @@ export async function getListById(listId: string): Promise<ItemsList> {
 
   return list.data() as ItemsList;
 }
+
+//  TODO: Sacar el partial del segundo param (factory)
+export async function addItemToList(parentListId: string, item: Partial<Item>) {
+  const { title = "Nuevo item", note = "", url = "", listId = null } = item;
+
+  const newItem = {
+    // forced
+    addedAt: new Date(),
+    // default values
+    title,
+    note,
+    url,
+    listId,
+    // received
+    ...item,
+  };
+
+  const newItemId = nanoid();
+
+  listsCollection.doc(parentListId).update({
+    ["items." + newItemId]: newItem as any,
+  });
+}

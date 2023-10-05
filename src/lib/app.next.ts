@@ -8,7 +8,7 @@ export async function getSessionUserTokenData() {
   return decodeToken(token as string);
 }
 
-export async function getSessionUser(): Promise<User | null> {
+export async function getSessionUser(): Promise<User> {
   const tokenData = await getSessionUserTokenData();
   const user = await getUserById(tokenData?.userId);
   return user;

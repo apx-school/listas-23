@@ -15,10 +15,15 @@
     "firebase-admin": "^11.10.1",
     "nanoid": "^4.0.2",
     "next": "^13.5.1",
+    "open-props": "^1.6.4",
     "radash": "^11.0.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "react-feather": "^2.0.10",
     "resend": "^1.0.0",
     "typescript": "5.2.2"
+  },
+  "devDependencies": {
+    "sass": "^1.68.0"
   }
 }

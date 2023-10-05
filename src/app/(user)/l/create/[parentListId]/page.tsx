@@ -1,5 +1,5 @@
 "use client";
-import { createList } from "./actions";
+import { createListAction } from "./actions";
 
 export default function CreateList({ params }) {
   const { parentListId } = params;
@@ -8,19 +8,15 @@ export default function CreateList({ params }) {
     data.forEach((d, k) => {
       newListData[k] = d;
     });
-    createList(parentListId, newListData);
+    createListAction(parentListId, newListData);
   }
   return (
     <div>
       <h1>Nueva lista</h1>
       <form action={submitHandler}>
         <label>
-          <h5>Nota</h5>
-          <input type="text" name="note" />
-        </label>
-        <label>
-          <h5>URL</h5>
-          <input type="text" name="url" />
+          <h5>Title</h5>
+          <input type="text" name="title" />
         </label>
         <div>
           <input type="submit" />

@@ -6,7 +6,7 @@ export default async function TimelinePage() {
 
   return (
     <div>
-      <h1>Timeline/Newfeed</h1>
+      <h4>Timeline/Newfeed</h4>
       <div>User:{sessionTokenData?._id}</div>
     </div>
   );

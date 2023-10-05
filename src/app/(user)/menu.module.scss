@@ -1,0 +1,14 @@
+.root {
+}
+.menuOption {
+  display: flex;
+  align-items: center;
+  gap: var(--size-2);
+}
+.menuOptionIcon {
+  height: var(--size-3);
+  width: auto;
+}
+.menuOptionLabel {
+  font-size: var(--size-3);
+}

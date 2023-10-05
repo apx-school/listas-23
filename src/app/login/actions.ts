@@ -3,6 +3,7 @@ import { sendCode, getToken } from "lib/auth";
 import { AUTH_COOKIE_NAME } from "lib/token";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
+
 export async function submitHandler(values) {
   const email = values.get("email");
   const code = values.get("code");
